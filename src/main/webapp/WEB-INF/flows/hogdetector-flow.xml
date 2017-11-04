@@ -17,9 +17,17 @@
 		<transition on="failed" to="index"/>	
 	</action-state>
 		
-	<view-state id="fileuploaded" view="fileuploaded" model="file"/>
+	<view-state id="fileuploaded" view="fileuploaded" model="file">
+		<transition on="HOGdetect" to="actionHOGdetect"/>
+	</view-state>
+	
+	<action-state id="actionHOGdetect" >
+		<evaluate expression="hogDetectorService.detect(file,flowRequestContext)"/>
+		<transition on="success" to="hogimage"/>
+		<transition on="failed" to="index"/>	
+	</action-state>
 
-
+	<view-state id="hogimage" view="hogimage" model="file"/>
 
 	<end-state id="cancel" view="cancel"></end-state>
 

@@ -12,13 +12,8 @@
 <body>
 	<div>
 		<form:form method="post" modelAttribute="file">
-			<p>Загруженный файл: ${file.getSourceFile().getName()}</p>
-			<p></p>
-			<img alt="${file.getPath()}" src="${file.getPath()} ">
 			<p>Бинаризованный файл: ${file.getGreyScaleFile().getName()}</p>
-			<input type="submit" value="Распознать" name="_eventId_HOGdetect"/>
-			
-			<p><img alt="${file.getGreyScalePath()}" src="${file.getGreyScalePath()} "></p>
+			<img alt="${file.getGreyScalePath()}" src="${file.getGreyScalePath()} ">
 		</form:form>	
 	</div>
 </body>

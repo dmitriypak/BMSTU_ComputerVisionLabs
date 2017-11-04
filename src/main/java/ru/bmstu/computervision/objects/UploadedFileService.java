@@ -48,17 +48,6 @@ public class UploadedFileService {
 		HttpServletResponse response = (HttpServletResponse) externalContext.getNativeResponse();		
 		MultipartFile uploadedFile = null;
 		if (file.getFile()!=null) {
-//			Map<?,?>map = new LinkedHashMap<>();
-//			map = context.getFlowScope().asMap();
-//			context.getFlowScope().get("file");
-//			uploadedFile = (UploadedFile) context.getFlowScope().get("file");
-//			for(Map.Entry<?, ?> item:map.entrySet()) {
-//				uploadedFile = (UploadedFile) item.getValue();
-//				System.out.println("$$$ полученный файл " + uploadedFile.getFile().getOriginalFilename());
-//				System.out.println(item.getKey());
-//		
-//			}
-//			mapParam = context.getRequestParameters().asMap();
 			uploadedFile = file.getFile();
 			rootPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 			rootPath2 = request.getSession().getServletContext().getRealPath("/");
