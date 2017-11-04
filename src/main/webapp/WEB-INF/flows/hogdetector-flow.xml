@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="hogdetector">
+	
+	<var name="file" class="ru.bmstu.computervision.objects.UploadedFile"/>
+	
+	<view-state id="hogdetector" view="hogdetector" model="file">
+		<transition on="upload" to="actionFileUploaded" />
+	</view-state>
+
+	<action-state id="actionFileUploaded" >
+		<evaluate expression="uploadedFileService.checkFile(file,flowRequestContext)"/>
+		<transition on="success" to="fileuploaded"/>
+		<transition on="failed" to="index"/>	
+	</action-state>
+		
+	<view-state id="fileuploaded" view="fileuploaded" model="file"/>
+
+
+
+	<end-state id="cancel" view="cancel"></end-state>
+
+</flow>
