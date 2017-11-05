@@ -12,8 +12,8 @@
 <body>
 	<div>
 		<form:form method="post" modelAttribute="file">
-			<p>Бинаризованный файл: ${file.getGreyScaleFile().getName()}</p>
-			<img alt="${file.getGreyScalePath()}" src="${file.getGreyScalePath()} ">
+			<p>Распознанный файл: ${file.getDetectPeopleFile().getName()}</p>
+			<img alt="${file.getDetectPeopleFilePath()}" src="${file.getDetectPeopleFilePath()} ">
 		</form:form>	
 	</div>
 </body>

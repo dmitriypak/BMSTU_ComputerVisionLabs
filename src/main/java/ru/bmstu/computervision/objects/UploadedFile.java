@@ -17,6 +17,8 @@ public class UploadedFile implements Serializable {
 	private File greyScaleFile;
 	private File sourceFile;
 	private String greyScalePath;
+	private File detectPeopleFile;
+	private String detectPeopleFilePath;
 	
 	
 	
@@ -90,6 +92,22 @@ public class UploadedFile implements Serializable {
 
 	public void setGreyScalePath(String greyScalePath) {
 		this.greyScalePath = greyScalePath;
+	}
+
+	public File getDetectPeopleFile() {
+		return detectPeopleFile;
+	}
+
+	public void setDetectPeopleFile(File detectPeopleFile) {
+		this.detectPeopleFile = detectPeopleFile;
+	}
+
+	public String getDetectPeopleFilePath() {
+		return detectPeopleFilePath;
+	}
+
+	public void setDetectPeopleFilePath(String detectPeopleFilePath) {
+		this.detectPeopleFilePath = detectPeopleFilePath;
 	}
 
 	
