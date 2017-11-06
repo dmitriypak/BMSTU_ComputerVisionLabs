@@ -16,6 +16,7 @@
 	<flow-registry id="mainFlowRegistry" flow-builder-services="flowBuilder">
 		<flow-location id="index" path="/WEB-INF/flows/index-flow.xml" />
 		<flow-location id="hogdetector" path="/WEB-INF/flows/hogdetector-flow.xml" />
+		<flow-location id="histogram" path="/WEB-INF/flows/histogram-flow.xml" />
 	</flow-registry>
 
 	<flow-builder-services id="flowBuilder"	view-factory-creator="flowViewResolver" />

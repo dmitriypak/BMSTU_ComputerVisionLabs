@@ -3,11 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-	start-state="hogdetector">
+	start-state="histogram">
 	
 	<var name="file" class="ru.bmstu.computervision.objects.UploadedFile"/>
 	
-	<view-state id="hogdetector" view="uploadfile" model="file">
+	<view-state id="histogram" view="uploadfile" model="file">
 		<transition on="upload" to="actionFileUploaded" />
 	</view-state>
 

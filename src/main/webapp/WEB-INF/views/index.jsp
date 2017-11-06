@@ -25,8 +25,8 @@
 	</div>
 
 	<div class="list-group">
-		<a href="${flowExecutionUrl}&_eventId=hogdetectorPage"
-			class="list-group-item list-group-item-action">Лабораторная работа №2</a> 
+		<a href="${flowExecutionUrl}&_eventId=histogramPage"
+			class="list-group-item list-group-item-action">Гистограмма яркости</a> 
 		<a href="${flowExecutionUrl}&_eventId=hogdetectorPage"
 			class="list-group-item list-group-item-action">HOG</a> 
 	</div>

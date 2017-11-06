@@ -7,15 +7,12 @@
 	
 	<view-state id="index" view="index">
 		<transition on="hogdetectorPage" to="actionHogdetector" />
-<!-- 		<transition on="lsbencryptionPage" to="actionLsbencryption" /> -->
+ 		<transition on="histogramPage" to="actionHistogram" />
 	</view-state>
 
 
 	<subflow-state id="actionHogdetector" subflow="hogdetector"/>
-	
-<!-- 	<view-state id="lsbencryption" view="lsbencryption">
-		<transition on="lsbencryptionPage" to="index" />
-	</view-state> -->
+	<subflow-state id="actionHistogram" subflow="histogram"/>
 	
 	<end-state id="cancel" view="cancel"></end-state>
 </flow>
