@@ -22,10 +22,10 @@ import org.springframework.webflow.execution.RequestContext;
 
 @Component
 public class HogDetectorService {
+	
 	public ModelAndView detect(UploadedFile file, RequestContext context) throws IOException {
 		ModelAndView mvn = new ModelAndView();
-		HOGDescriptor hog = new HOGDescriptor();
-		hog.setSVMDetector(HOGDescriptor.getDefaultPeopleDetector());
+		
 		ServletExternalContext externalContext = (ServletExternalContext) context.getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getNativeRequest();
 		
@@ -34,9 +34,31 @@ public class HogDetectorService {
 		String dir = rootPath +"/resources/";
 
 		String pathGreyScaleFile = file.getGreyScaleFile().getAbsolutePath();
+		String pathBinaryFile = file.getBinaryFile().getAbsolutePath();
 		System.out.println("$$$ path" + pathGreyScaleFile);
-		Mat matrix = Imgcodecs.imread(pathGreyScaleFile);
-
+		
+		String detectPeopleName = file.getGreyScaleFile().getName();
+		String detectPeopleBinaryName = file.getBinaryFile().getName();
+		String detectPeopleFilePath = serverPath +"/resources/";
+		File greyScaleDetectFile = createDetectPeopleFile(pathGreyScaleFile,detectPeopleName,dir);
+		file.setDetectPeopleFile(greyScaleDetectFile);
+		file.setDetectPeopleFilePath(detectPeopleFilePath+greyScaleDetectFile.getName());
+		
+		File binaryFile = createDetectPeopleFile(pathBinaryFile,detectPeopleBinaryName,dir);
+		file.setDetectPeopleFile(greyScaleDetectFile);
+		file.setDetectPeopleFilePath(detectPeopleFilePath+greyScaleDetectFile.getName());
+		file.setDetectPeopleFile(binaryFile);
+		file.setDetectPeopleBinaryFilePath(detectPeopleFilePath+binaryFile.getName());
+		
+		
+		mvn.setViewName("success");
+		return mvn;
+	}
+	private File createDetectPeopleFile(String path, String fileName, String dir) {
+		HOGDescriptor hog = new HOGDescriptor();
+		hog.setSVMDetector(HOGDescriptor.getDefaultPeopleDetector());
+		Mat matrix = Imgcodecs.imread(path);
+		File detectPeopleFile = null;
 		MatOfRect found = new MatOfRect();
 		MatOfDouble weight = new MatOfDouble();
 		hog.detectMultiScale(matrix, found, weight, 0, new Size(8, 8), new Size(32, 32), 1.05, 2, false);
@@ -52,17 +74,12 @@ public class HogDetectorService {
 			}
 			
 			// Writing the image
-			String detectPeopleName = file.getGreyScaleFile().getName();
-			String detectPeopleFileName = detectPeopleName.substring(0,detectPeopleName.lastIndexOf("."))+"_detect_people"+detectPeopleName.substring(detectPeopleName.lastIndexOf("."),
-					detectPeopleName.length());
+			String detectPeopleFileName = fileName.substring(0,fileName.lastIndexOf("."))+"_detect_people"+fileName.substring(fileName.lastIndexOf("."),
+					fileName.length());
 			Imgcodecs.imwrite(dir+detectPeopleFileName, matrix);	
-			String detectPeopleFilePath = serverPath +"/resources/";
-			File detectPeopleFile = new File(dir+detectPeopleFileName);
-			file.setDetectPeopleFile(detectPeopleFile);
-			file.setDetectPeopleFilePath(detectPeopleFilePath+detectPeopleFileName);
+			detectPeopleFile = new File(dir+detectPeopleFileName);		
 			
 		}
-		mvn.setViewName("success");
-		return mvn;
-	}
+		return detectPeopleFile;
+	}	
 }

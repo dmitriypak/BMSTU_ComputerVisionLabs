@@ -15,10 +15,12 @@
 			<p>Загруженный файл: ${file.getSourceFile().getName()}</p>
 			<p></p>
 			<img alt="${file.getPath()}" src="${file.getPath()} ">
-			<p>Бинаризованный файл: ${file.getGreyScaleFile().getName()}</p>
-			<input type="submit" value="Распознать" name="_eventId_HOGdetect"/>
-			
+			<p>В оттенках серого: ${file.getGreyScaleFile().getName()}</p>
+			<input type="submit" value="Распознать" name="_eventId_HOGdetect"/>	
 			<p><img alt="${file.getGreyScalePath()}" src="${file.getGreyScalePath()} "></p>
+			
+			<p>Бинаризованный файл: ${file.getBinaryFile().getName()}</p>
+			<p><img alt="${file.getBinaryFilePath()}" src="${file.getBinaryFilePath()} "></p>			
 		</form:form>	
 	</div>
 </body>

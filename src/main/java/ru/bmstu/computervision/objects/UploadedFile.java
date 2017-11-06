@@ -16,9 +16,13 @@ public class UploadedFile implements Serializable {
 	private String absolutePath;
 	private File greyScaleFile;
 	private File sourceFile;
+	private File binaryFile;
+	private String binaryFilePath;
 	private String greyScalePath;
 	private File detectPeopleFile;
 	private String detectPeopleFilePath;
+	private File detectPeopleBinaryFile;
+	private String detectPeopleBinaryFilePath;
 	
 	
 	
@@ -108,6 +112,38 @@ public class UploadedFile implements Serializable {
 
 	public void setDetectPeopleFilePath(String detectPeopleFilePath) {
 		this.detectPeopleFilePath = detectPeopleFilePath;
+	}
+
+	public File getBinaryFile() {
+		return binaryFile;
+	}
+
+	public void setBinaryFile(File binaryFile) {
+		this.binaryFile = binaryFile;
+	}
+
+	public String getBinaryFilePath() {
+		return binaryFilePath;
+	}
+
+	public void setBinaryFilePath(String binaryFilePath) {
+		this.binaryFilePath = binaryFilePath;
+	}
+
+	public File getDetectPeopleBinaryFile() {
+		return detectPeopleBinaryFile;
+	}
+
+	public void setDetectPeopleBinaryFile(File detectPeopleBinaryFile) {
+		this.detectPeopleBinaryFile = detectPeopleBinaryFile;
+	}
+
+	public String getDetectPeopleBinaryFilePath() {
+		return detectPeopleBinaryFilePath;
+	}
+
+	public void setDetectPeopleBinaryFilePath(String detectPeopleBinaryFilePath) {
+		this.detectPeopleBinaryFilePath = detectPeopleBinaryFilePath;
 	}
 
 	

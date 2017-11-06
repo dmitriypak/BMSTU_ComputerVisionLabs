@@ -12,8 +12,10 @@
 <body>
 	<div>
 		<form:form method="post" modelAttribute="file">
-			<p>Распознанный файл: ${file.getDetectPeopleFile().getName()}</p>
+			<p>Распознанный файл в оттенках серого: ${file.getDetectPeopleFile().getName()}</p>
 			<img alt="${file.getDetectPeopleFilePath()}" src="${file.getDetectPeopleFilePath()} ">
+			<p>Распознанный бинаризованный файл: ${file.getDetectPeopleBinaryFile().getName()}</p>
+			<img alt="${file.getDetectPeopleBinaryFilePath()}" src="${file.getDetectPeopleBinaryFilePath()} ">			
 		</form:form>	
 	</div>
 </body>

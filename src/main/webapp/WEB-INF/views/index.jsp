@@ -5,18 +5,20 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Лабораторные работы по Компьютерной безопасности</title>
+<title>Лабораторные работы по Распознаванию образов</title>
 <link href="<c:url value='/resources/css/bootstrap.css' />"
 	rel="stylesheet"></link>
 </head>
 <body>
-	<h2>OpenCV Java Spring Webapp</h2>
+
 	<%@ page import = "org.opencv.core.Core" %>
-	Core.VERSION: <%= Core.VERSION %>
+	
 
 
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
+			<h3>OpenCV Java Spring Webapp</h3>
+			Core.VERSION: <%= Core.VERSION %>
 			<h2 class="display-3">Распознавание образов</h2>
 			<p class="lead">Лабораторные работы Пак Д.В. ВИУ7-88</p>
 		</div>
@@ -24,7 +26,9 @@
 
 	<div class="list-group">
 		<a href="${flowExecutionUrl}&_eventId=hogdetectorPage"
-			class="list-group-item list-group-item-action">HOG-детектор</a> 
+			class="list-group-item list-group-item-action">Лабораторная работа №2</a> 
+		<a href="${flowExecutionUrl}&_eventId=hogdetectorPage"
+			class="list-group-item list-group-item-action">HOG</a> 
 	</div>
 
 </body>
