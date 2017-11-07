@@ -7,7 +7,7 @@
 
 <head>
 
-<title>Загруженный файл</title>
+<title>Оригинальное изображение</title>
 </head>
 <body>
 	<div>
@@ -16,7 +16,10 @@
 			<p></p>
 			<img alt="${file.getPath()}" src="${file.getPath()} ">
 			<p>В оттенках серого: ${file.getGreyScaleFile().getName()}</p>
-			<input type="submit" value="Распознать" name="_eventId_HOGdetect"/>	
+			<input type="submit" value="Гистограмма" name="_eventId_createHistogram"/>	
+			
+			Макс.порог яркости <form:input path="BINARY_value" id="bvalue" value="${file.getBINARY_value()}"></form:input>
+			
 			<p><img alt="${file.getGreyScalePath()}" src="${file.getGreyScalePath()} "></p>
 			
 			<p>Бинаризованный файл: ${file.getBinaryFile().getName()}</p>

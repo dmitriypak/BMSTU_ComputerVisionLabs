@@ -23,6 +23,9 @@ public class UploadedFile implements Serializable {
 	private String detectPeopleFilePath;
 	private File detectPeopleBinaryFile;
 	private String detectPeopleBinaryFilePath;
+	private File histogram;
+	private String histogramPath;
+	private int BINARY_value;
 	
 	
 	
@@ -144,6 +147,30 @@ public class UploadedFile implements Serializable {
 
 	public void setDetectPeopleBinaryFilePath(String detectPeopleBinaryFilePath) {
 		this.detectPeopleBinaryFilePath = detectPeopleBinaryFilePath;
+	}
+
+	public File getHistogram() {
+		return histogram;
+	}
+
+	public void setHistogram(File histogram) {
+		this.histogram = histogram;
+	}
+
+	public String getHistogramPath() {
+		return histogramPath;
+	}
+
+	public void setHistogramPath(String histogramPath) {
+		this.histogramPath = histogramPath;
+	}
+
+	public int getBINARY_value() {
+		return BINARY_value;
+	}
+
+	public void setBINARY_value(int bINARY_value) {
+		BINARY_value = bINARY_value;
 	}
 
 	

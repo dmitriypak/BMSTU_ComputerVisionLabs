@@ -40,9 +40,10 @@ public class UploadedFileService {
 	public static String rootPath2;
 	int histSize = 256; // bin size
 	float range[] = { MIN_VALUE, MAX_VALUE };
+	final static int max_BINARY_value = 255;
 
 	public ModelAndView checkFile(UploadedFile file, RequestContext context) throws IOException {
-		// System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		ModelAndView mav = new ModelAndView();
 		ServletExternalContext externalContext = (ServletExternalContext) context.getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getNativeRequest();
@@ -65,7 +66,7 @@ public class UploadedFileService {
 			
 			
 			File sourceFile = createNewFile(rootPath2, uploadedFile);
-			list = imageToGrayScale(rootPath2, sourceFile);
+			list = imageToGrayScale(rootPath2, sourceFile, file.getBINARY_value());
 			if (list.size()>0) {
 				greyScaleFile = list.get(0);
 				binaryFile = list.get(1);				
@@ -95,7 +96,7 @@ public class UploadedFileService {
 	}
 
 	private File createNewFile(String path, MultipartFile file) {
-		System.loadLibrary("opencv_java330");
+		
 
 		File newFile = null;
 		try {
@@ -118,7 +119,7 @@ public class UploadedFileService {
 		return newFile;
 	}
 
-	private ArrayList<File> imageToGrayScale(String path, File file) throws IOException {
+	private ArrayList<File> imageToGrayScale(String path, File file, int binary_value) throws IOException {
 		List <File>listFiles = new ArrayList<File>();
 		File dir = new File(path + "resources" + File.separator);
 		String fileName = file.getName();
@@ -127,8 +128,6 @@ public class UploadedFileService {
 		Mat mat = new Mat(image.getHeight(), image.getWidth(), CvType.CV_8UC3);
 		mat.put(0, 0, data);
 		Mat matGreyScale = new Mat(image.getHeight(), image.getWidth(), CvType.CV_8UC1);
-
-		String filePath = file.getAbsolutePath();
 
 		// Mat mat = Imgcodecs.imread(filePath,0);
 
@@ -152,9 +151,9 @@ public class UploadedFileService {
 
 		String binaryFileName = greyScaleFileName.substring(0, greyScaleFileName.lastIndexOf(".")) + "_binary"
 				+ greyScaleFileName.substring(greyScaleFileName.lastIndexOf("."), greyScaleFileName.length());
-
-		Imgproc.adaptiveThreshold(matGreyScale, matBW, 125, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 9,
-				10);
+		Imgproc.threshold(matGreyScale, matBW, binary_value, max_BINARY_value, 0);
+		
+		//Imgproc.adaptiveThreshold(matGreyScale, matBW, 125, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 9,10);
 		Imgcodecs.imwrite(dir.getAbsolutePath() + File.separator + binaryFileName, matBW);
 		File binaryOuptut = new File(dir.getAbsolutePath() + File.separator + binaryFileName);
 		listFiles.add(binaryOuptut);

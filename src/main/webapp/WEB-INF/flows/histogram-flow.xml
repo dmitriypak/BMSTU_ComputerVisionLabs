@@ -13,21 +13,33 @@
 
 	<action-state id="actionFileUploaded" >
 		<evaluate expression="uploadedFileService.checkFile(file,flowRequestContext)"/>
-		<transition on="success" to="fileuploaded"/>
+		<transition on="success" to="histogramUploadedFile"/>
 		<transition on="failed" to="index"/>	
 	</action-state>
 		
-	<view-state id="fileuploaded" view="fileuploaded" model="file">
-		<transition on="HOGdetect" to="actionHOGdetect"/>
+	<view-state id="histogramUploadedFile" view="histogram" model="file">
+		<transition on="createHistogram" to="actionCreateHistogram"/>
 	</view-state>
 	
-	<action-state id="actionHOGdetect" >
-		<evaluate expression="hogDetectorService.detect(file,flowRequestContext)"/>
-		<transition on="success" to="hogimage"/>
+	<action-state id="actionCreateHistogram" >
+		<evaluate expression="histogramService.calcHistogram(file,flowRequestContext)"/>
+		<transition on="success" to="histogramComplete"/>
 		<transition on="failed" to="index"/>	
 	</action-state>
+	
+	
+	<view-state id="histogramComplete" view="histogramComplete" model="file">
+		<transition on="calcHistogram" to="actionCalcHistogram"/>
+	</view-state>
+	
+	<action-state id="actionCalcHistogram" >
+		<evaluate expression="histogramService.calcHistogram(file,flowRequestContext)"/>
+		<transition on="success" to="histogramComplete"/>
+		<transition on="failed" to="index"/>	
+	</action-state>
+	
 
-	<view-state id="hogimage" view="hogimage" model="file"/>
+<!-- 	<view-state id="histogramComplete" view="histogramComplete" model="file"/> -->
 
 	<end-state id="cancel" view="cancel"></end-state>
 

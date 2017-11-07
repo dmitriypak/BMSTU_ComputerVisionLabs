@@ -14,6 +14,7 @@
 		<form:form method="POST" enctype="multipart/form-data" modelAttribute="file" style="margin-left: 5%">
 			<fieldset>
 				<input type="file" name="file" path="file" />
+				<p>Макс.порог яркости <form:input path="BINARY_value" id="bvalue" value="125"></form:input></p>
 			</fieldset>
 			<footer>
 				<input class="btn btn-success" type="submit" value="Загрузить" name="_eventId_upload" />		
