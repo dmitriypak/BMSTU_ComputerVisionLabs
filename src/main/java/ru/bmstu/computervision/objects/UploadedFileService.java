@@ -66,7 +66,7 @@ public class UploadedFileService {
 			
 			
 			File sourceFile = createNewFile(rootPath2, uploadedFile);
-			list = imageToGrayScale(rootPath2, sourceFile, file.getBINARY_value());
+			list = imageToGrayScale(rootPath2, sourceFile, file.getBrightness_value());
 			if (list.size()>0) {
 				greyScaleFile = list.get(0);
 				binaryFile = list.get(1);				
@@ -132,7 +132,6 @@ public class UploadedFileService {
 		// Mat mat = Imgcodecs.imread(filePath,0);
 
 		Mat matBW = new Mat(); // Binary
-
 		String greyScaleFileName = fileName.substring(0, fileName.lastIndexOf(".")) + "_greyscale"
 				+ fileName.substring(fileName.lastIndexOf("."), fileName.length());
 

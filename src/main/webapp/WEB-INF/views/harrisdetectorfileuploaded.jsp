@@ -20,7 +20,7 @@
 			<p><img alt="${file.getGreyScalePath()}" src="${file.getGreyScalePath()} "></p>
 			
 			<p>Бинаризованный файл: ${file.getBinaryFile().getName()}</p>
-			<p>Порог яркости: ${file.getBrightness_value()}</p>
+			<p>Порог яркости: ${file.getBINARY_value()}</p>
 			<p><img alt="${file.getBinaryFilePath()}" src="${file.getBinaryFilePath()} "></p>			
 		</form:form>	
 	</div>

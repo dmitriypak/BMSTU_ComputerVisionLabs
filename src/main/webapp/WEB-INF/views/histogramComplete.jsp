@@ -12,16 +12,16 @@
 <body>
 	<div>
 		<form:form method="post" modelAttribute="file">
-			<p>Порог яркости: ${file.getBINARY_value()}</p>
+			<p>Порог яркости: ${file.getBrightness_value()}</p>
 			<input type="submit" value="Пересчитать" name="_eventId_calcHistogram"/>	
-			Макс.порог яркости <form:input path="BINARY_value" id="bvalue" value="${file.getBINARY_value()}"></form:input>
+			Макс.порог яркости <form:input path="brightness_value" id="bvalue" value="${file.getBrightness_value()}"></form:input>
 			<table>
 				<tr style="font-weight: bold">
 					<td>Бинаризованный файл: ${file.getBinaryFile().getName()}</td>
 					<td>Гистограмма яркости:</td>
 				</tr>
 				<tr>
-					<td><img alt="${file.getBinaryFilePath()}" src="${file.getBinaryFilePath()}"></td>
+					<td><img alt="${file.getGreyScalePath()}" src="${file.getGreyScalePath()}"></td>
 					<td><img alt="${file.getHistogramPath()}" src="${file.getHistogramPath()} "></td>
 				</tr>
 			</table>

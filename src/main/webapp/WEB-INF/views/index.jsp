@@ -27,6 +27,8 @@
 	<div class="list-group">
 		<a href="${flowExecutionUrl}&_eventId=histogramPage"
 			class="list-group-item list-group-item-action">Гистограмма яркости</a> 
+		<a href="${flowExecutionUrl}&_eventId=harrisdetectorcornerPage"
+			class="list-group-item list-group-item-action">Детектор углов Харриса</a> 
 		<a href="${flowExecutionUrl}&_eventId=hogdetectorPage"
 			class="list-group-item list-group-item-action">HOG</a> 
 	</div>

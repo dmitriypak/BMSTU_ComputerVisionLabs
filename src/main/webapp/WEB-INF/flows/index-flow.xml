@@ -8,11 +8,14 @@
 	<view-state id="index" view="index">
 		<transition on="hogdetectorPage" to="actionHogdetector" />
  		<transition on="histogramPage" to="actionHistogram" />
+ 		<transition on="harrisdetectorcornerPage" to="actionHarrisDetector" />
 	</view-state>
 
 
 	<subflow-state id="actionHogdetector" subflow="hogdetector"/>
 	<subflow-state id="actionHistogram" subflow="histogram"/>
+	<subflow-state id="actionHarrisDetector" subflow="harrisdetector"/>
+	
 	
 	<end-state id="cancel" view="cancel"></end-state>
 </flow>

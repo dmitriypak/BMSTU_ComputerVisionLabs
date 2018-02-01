@@ -25,7 +25,7 @@ public class UploadedFile implements Serializable {
 	private String detectPeopleBinaryFilePath;
 	private File histogram;
 	private String histogramPath;
-	private int BINARY_value;
+	private int brightness_value;
 	
 	
 	
@@ -165,12 +165,12 @@ public class UploadedFile implements Serializable {
 		this.histogramPath = histogramPath;
 	}
 
-	public int getBINARY_value() {
-		return BINARY_value;
+	public int getBrightness_value() {
+		return brightness_value;
 	}
 
-	public void setBINARY_value(int bINARY_value) {
-		BINARY_value = bINARY_value;
+	public void setBrightness_value(int brightness_value) {
+		this.brightness_value = brightness_value;
 	}
 
 	

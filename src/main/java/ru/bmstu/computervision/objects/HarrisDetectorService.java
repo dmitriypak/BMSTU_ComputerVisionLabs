@@ -1,7 +1,6 @@
 package ru.bmstu.computervision.objects;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,9 +29,9 @@ import org.springframework.webflow.context.servlet.ServletExternalContext;
 import org.springframework.webflow.execution.RequestContext;
 
 @Component
-public class HistogramService {
+public class HarrisDetectorService {
 	final static int max_BINARY_value = 255;
-	public ModelAndView calcHistogram(UploadedFile file, RequestContext context) throws IOException {
+	public ModelAndView detectCorners(UploadedFile file, RequestContext context) throws IOException {
 		ModelAndView mvn = new ModelAndView();
 		
 		ServletExternalContext externalContext = (ServletExternalContext) context.getExternalContext();
@@ -53,56 +52,17 @@ public class HistogramService {
 //		Imgcodecs.imwrite(dir+ binaryFileName, matBW);
 //		File binaryOuptut = new File(dir+ binaryFileName);
 //		file.setBinaryFile(binaryOuptut);
-
-		File histogramFile = getHistogram(file.getGreyScaleFile(),dir);
-		file.setHistogram(histogramFile);
-		file.setHistogramPath(filePath+histogramFile.getName());
 		
 		
 		mvn.setViewName("success");
 		return mvn;
 	}
-	private File getHistogram(File file,String dir) throws IOException {
-		MatOfInt channels = new MatOfInt(0);
-		MatOfInt histSize = new MatOfInt(256);
-		float range[] = {0, 256};
-		MatOfFloat ranges = new MatOfFloat(range);
-		
-		
-		//MatOfFloat ranges=new MatOfFloat(0.0f,255.0f);
-		int hist_w = 512;
-		int hist_h = 512;
-		int bin_w = (int) Math.round(hist_w / histSize.get(0, 0)[0]);
-		Mat hist_b = new Mat();
-		ArrayList<Mat> imagesList=new ArrayList<Mat>();
-        
-		hist_b = Imgcodecs.imread(file.getAbsolutePath());
-		Mat histImage = new Mat(hist_h, hist_w, CvType.CV_8S);
-		Core.normalize(hist_b, hist_b, 0, histImage.rows(), Core.NORM_MINMAX, -1, new Mat());
-		imagesList.add(hist_b);
-		Imgproc.calcHist(imagesList, channels ,new Mat(), histImage, histSize, ranges);
-		for (int i = 1; i < histSize.get(0, 0)[0]; i++){
-			Imgproc.line(histImage, new Point(bin_w * (i - 1), hist_h - Math.round(hist_b.get(i - 1, 0)[0])),
-			new Point(bin_w * (i), hist_h - Math.round(hist_b.get(i,0)[0])), new Scalar(255, 0, 0), 2, 8, 0);
-		}
-		
-		String fileName = file.getName();
-		BufferedImage histo = convertMatToBufferedImage(histImage);
-		String histogramFileName = fileName.substring(0, fileName.lastIndexOf(".")) + "_histogram"
-				+ fileName.substring(fileName.lastIndexOf("."), fileName.length());
-		File outputfile = new File(dir+histogramFileName);
-		ImageIO.write(histo, "jpg", outputfile);
-		return outputfile;
 
-	}	
-	
 	
 	private static BufferedImage convertMatToBufferedImage(Mat mat) {  
-		
         byte[] data = new byte[mat.rows() * mat.cols() * (int)mat.elemSize()];  
         System.out.println("######" + mat.rows() + "/" + mat.cols());
         int type;  
-        
         mat.get(0,0,data);  
   
         switch (mat.channels()) {    
